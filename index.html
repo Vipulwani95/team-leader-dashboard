@@ -52,7 +52,12 @@
         const data = await res.json();
 
         // Filter rows for logged-in user's email
-        const filtered = data.filter(row => row['Team Leader Email'] === userEmail);
+        const filtered = data.filter(row => 
+          row['Team Leader Email'] &&
+          row['Team Leader Email'].toString().trim().toLowerCase() ===
+          userEmail.trim().toLowerCase()
+        );
+
 
         displayTable(filtered);
       } catch (err) {
@@ -91,4 +96,5 @@
   </script>
 </body>
 </html>
+
 
